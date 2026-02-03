@@ -1,8 +1,9 @@
-fetch('https://hplussport.com/api/products?order=name')
+fetch('https://hplussport.com/api/products?order=price')
 .then(function(response) {
 	return response.json();
 })
 .then(function(jsonData) {
+	console.log(jsonData)
 	for(items in jsonData) {
 		//Display all the product names
 		var productName = jsonData[items].name;
@@ -15,9 +16,12 @@ fetch('https://hplussport.com/api/products?order=name')
 		var image = document.createElement('img');
 		image.setAttribute('src', productImg);
 		document.body.appendChild(image);
-
-		//Display the price of each product
 		
+		//Display the price of each product
+		var productPrice= jsonData[items].price;
+		var price = document.createElement('li');
+		price.innerHTML = productPrice;
+		document.body.appendChild(price);
 	}
 
 })
